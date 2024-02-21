@@ -4,11 +4,11 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:new_bussiness_app/General/end_points.dart';
 import 'package:new_bussiness_app/General/loading_and_error.dart';
 import 'package:new_bussiness_app/General/utils.dart';
-import 'package:new_bussiness_app/data/remote/app_dio.dart';
-import 'package:new_bussiness_app/modules/ads/ads_cubit/ads_cubit.dart';
-import 'package:new_bussiness_app/modules/ads/ads_cubit/ads_states.dart';
-import 'package:new_bussiness_app/modules/ads/domain/ads_repo.dart';
-import 'package:new_bussiness_app/modules/edit_ads/presentaition/edit_ads.dart';
+import 'package:new_bussiness_app/modules/ads/ads_index/ads_cubit/ads_cubit.dart';
+import 'package:new_bussiness_app/modules/ads/ads_index/ads_cubit/ads_states.dart';
+import 'package:new_bussiness_app/modules/ads/ads_index/domain/ads_repo.dart';
+import 'package:new_bussiness_app/modules/ads/delete_ads/cubit/cubit.dart';
+import 'package:new_bussiness_app/modules/ads/edit_ads/presentaition/edit_ads.dart';
 
 class AdsGridView extends StatefulWidget {
   const AdsGridView({
@@ -70,12 +70,10 @@ class _AdsGridViewState extends State<AdsGridView> {
                                   color: Colors.redAccent,
                                   child: TextButton(
                                       onPressed: () async {
-                                        await RemoteDataSource.deleteData(
-                                          url: EndPoints.deleteAd(
-                                              cubit.ads?[index].id),
-                                          loading: true,
-                                          token: Utils.token,
-                                        );
+                                        await DeleteADsCubit.get(context)
+                                            .deleteADMethode(
+                                                id: cubit.ads?[index].id ?? "");
+
                                         context.mounted
                                             ? await AdsRepo.getAdsData(query: {
                                                 'status':

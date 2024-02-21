@@ -3,9 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_bussiness_app/General/end_points.dart';
 import 'package:new_bussiness_app/General/loading_and_error.dart';
 import 'package:new_bussiness_app/General/utils.dart';
-import 'package:new_bussiness_app/data/remote/app_dio.dart';
-import 'package:new_bussiness_app/modules/login_screens/cubit/states.dart';
-import 'package:new_bussiness_app/modules/login_screens/cubit/user_cubit.dart';
+import 'package:new_bussiness_app/data/remote/dio_service.dart';
+import 'package:new_bussiness_app/modules/account/cubit/cubit.dart';
+import 'package:new_bussiness_app/modules/authentication/login/cubit/login_states.dart';
+import 'package:new_bussiness_app/modules/authentication/user/cubit/user_cubit.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -165,14 +166,11 @@ class _EditProfileState extends State<EditProfile> {
                                       color: Colors.white, fontSize: 13),
                                 ),
                                 onPressed: () async {
-                                  await RemoteDataSource.putData(
-                                      url: EndPoints.updateUserData,
-                                      token: Utils.token,
-                                      body: {
-                                        'phone':
-                                            '+974${editPhoneController.text}',
-                                        'name': editNameController.text
-                                      });
+                                  await UpdateUserCubit.get(context)
+                                      .updateUserMethode(body: {
+                                    'phone': '+974${editPhoneController.text}',
+                                    'name': editNameController.text
+                                  });
                                 },
                               ),
                             ),

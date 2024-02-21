@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_bussiness_app/General/loading_and_error.dart';
 import 'package:new_bussiness_app/General/utils.dart';
 import 'package:new_bussiness_app/modules/account/presentation/profile_edit.dart';
+import 'package:new_bussiness_app/modules/authentication/user/cubit/user_states.dart';
 import 'package:new_bussiness_app/modules/forget_password/presentation/reset_password.dart';
-import 'package:new_bussiness_app/modules/login_screens/cubit/states.dart';
-import 'package:new_bussiness_app/modules/login_screens/cubit/user_cubit.dart';
+import 'package:new_bussiness_app/modules/authentication/user/cubit/user_cubit.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

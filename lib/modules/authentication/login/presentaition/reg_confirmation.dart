@@ -1,22 +1,30 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:new_bussiness_app/General/end_points.dart';
-import 'package:new_bussiness_app/modules/authentication/otp/cubit/otp_cubit.dart';
-import 'package:new_bussiness_app/modules/forget_password/presentation/reset_password.dart';
+
+import 'package:new_bussiness_app/modules/authentication/login/presentaition/login.dart';
+import 'package:new_bussiness_app/modules/authentication/otp/domain/otp_repo.dart';
 
 import 'package:pinput/pinput.dart';
 
-class OTPConfirmation extends StatefulWidget {
-  OTPConfirmation({super.key, required this.phone});
+class RegOTPConfirmation extends StatefulWidget {
+  RegOTPConfirmation(
+      {super.key,
+      required this.phone,
+      required this.confirmPass,
+      required this.name,
+      required this.password});
 
   String phone;
+  String password;
+  String confirmPass;
+  String name;
 
   @override
-  State<OTPConfirmation> createState() => _OTPConfirmationState();
+  State<RegOTPConfirmation> createState() => _OTPConfirmationState();
 }
 
-class _OTPConfirmationState extends State<OTPConfirmation> {
+class _OTPConfirmationState extends State<RegOTPConfirmation> {
   final textFormKey = GlobalKey<FormState>();
   TextEditingController otpcode = TextEditingController();
 
@@ -77,18 +85,19 @@ class _OTPConfirmationState extends State<OTPConfirmation> {
                     style: TextStyle(color: Colors.white, fontSize: 13),
                   ),
                   onPressed: () async {
-                    await OTPCubit.get(context).otpVerify(body: {
+                    await OTPVerifyRepo.otpverifyMethode(body: {
                       'code': otpcode.text,
-                      'phone': '+974${widget.phone}'
+                      'phone': '+974${widget.phone}',
+                      'name': widget.name,
+                      'password': widget.password,
+                      'password_confirmation': widget.confirmPass
                     });
-
                     if (context.mounted) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => ResetPassword(
-                                    phone: widget.phone,
-                                    code: otpcode.text,
+                              builder: (_) => LogIn(
+                                    currentIndex: 0,
                                   )));
                     }
                   },

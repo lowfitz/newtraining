@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:new_bussiness_app/General/end_points.dart';
-import 'package:new_bussiness_app/data/remote/app_dio.dart';
+import 'package:new_bussiness_app/modules/authentication/otp/cubit/otp_cubit.dart';
 import 'package:new_bussiness_app/modules/forget_password/presentation/otp_confirmation.dart';
 
 class ForgetPassword extends StatefulWidget {
@@ -127,17 +126,18 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     'ارسل الكود',
                     style: TextStyle(color: Colors.white, fontSize: 13),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (textFormKey.currentState!.validate()) {
-                      RemoteDataSource.postData(
-                          url: EndPoints.sendOTP,
+                      await OTPCubit.get(context).otpSend(
                           body: {'phone': '+974${_phoneController.text}'});
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => OTPConfirmation(
-                                    phone: _phoneController.text,
-                                  )));
+                      if (context.mounted) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => OTPConfirmation(
+                                      phone: _phoneController.text,
+                                    )));
+                      }
                     }
                   },
                 ),

@@ -1,9 +1,8 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:new_bussiness_app/General/end_points.dart';
-import 'package:new_bussiness_app/data/remote/app_dio.dart';
-import 'package:new_bussiness_app/modules/login_screens/presentaition/login.dart';
+import 'package:new_bussiness_app/modules/authentication/login/presentaition/login.dart';
+import 'package:new_bussiness_app/modules/forget_password/cubit/cubit.dart';
 
 class ResetPassword extends StatefulWidget {
   ResetPassword({super.key, required this.code, required this.phone});
@@ -131,18 +130,22 @@ class _ResetPasswordState extends State<ResetPassword> {
                     'تاكيد',
                     style: TextStyle(color: Colors.white, fontSize: 13),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (textFormKey.currentState!.validate()) {
-                      RemoteDataSource.postData(url: EndPoints.restPass, body: {
+                      await ForgetPasswordCubit.get(context)
+                          .forgetPasswordCubitMethode(body: {
                         'password': passwordController.text,
                         'password_confirmation': passwordController.text,
                         'phone': '+974${widget.phone}',
                         'code': widget.code
                       });
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LogIn(currentIndex: 0)));
+
+                      if (context.mounted) {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LogIn(currentIndex: 0)));
+                      }
                     }
                   },
                 ),
