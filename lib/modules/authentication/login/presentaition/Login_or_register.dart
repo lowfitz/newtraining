@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_bussiness_app/modules/authentication/login/presentaition/login.dart';
-import 'package:new_bussiness_app/modules/authentication/login/presentaition/register.dart';
+import 'package:new_bussiness_app/modules/authentication/register/presentation/register.dart';
 
 // ignore: must_be_immutable
 class LogInOrRegister extends StatefulWidget {
