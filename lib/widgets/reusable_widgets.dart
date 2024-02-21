@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:new_bussiness_app/General/end_points.dart';
 import 'package:new_bussiness_app/General/loading_and_error.dart';
-import 'package:new_bussiness_app/General/utils.dart';
 import 'package:new_bussiness_app/modules/ads/ads_index/ads_cubit/ads_cubit.dart';
 import 'package:new_bussiness_app/modules/ads/ads_index/ads_cubit/ads_states.dart';
 import 'package:new_bussiness_app/modules/ads/ads_index/domain/ads_repo.dart';

@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_bussiness_app/modules/ads/ads_cubit/ads_states.dart';
-import 'package:new_bussiness_app/modules/ads/domain/ads_repo.dart';
-import 'package:new_bussiness_app/modules/ads/domain/model.dart';
-import 'package:new_bussiness_app/modules/edit_ads/cubit/show_states.dart';
-import 'package:new_bussiness_app/modules/edit_ads/domain/edit_repo.dart';
-import 'package:new_bussiness_app/modules/edit_ads/domain/model.dart';
+import 'package:new_bussiness_app/modules/ads/ads_index/ads_cubit/ads_states.dart';
+import 'package:new_bussiness_app/modules/ads/ads_index/domain/ads_repo.dart';
+import 'package:new_bussiness_app/modules/ads/ads_index/domain/model.dart';
+import 'package:new_bussiness_app/modules/ads/edit_ads/cubit/show_states.dart';
+import 'package:new_bussiness_app/modules/ads/edit_ads/domain/edit_repo.dart';
+import 'package:new_bussiness_app/modules/ads/edit_ads/domain/model.dart';
 
 class AdsCubit extends Cubit<AdsStates> {
   AdsCubit() : super(AdsInitial());

@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_bussiness_app/General/utils.dart';
-import 'package:new_bussiness_app/modules/login_screens/cubit/states.dart';
-import 'package:new_bussiness_app/modules/login_screens/domain/user_model.dart';
-import 'package:new_bussiness_app/modules/login_screens/domain/user_repo.dart';
+import 'package:new_bussiness_app/modules/authentication/user/cubit/user_states.dart';
+import 'package:new_bussiness_app/modules/authentication/user/domain/user_model.dart';
+import 'package:new_bussiness_app/modules/authentication/user/domain/user_repo.dart';
 import 'package:new_bussiness_app/widgets/reusable_widgets.dart';
 
 class UserCubit extends Cubit<UserStates> {
@@ -18,8 +18,7 @@ class UserCubit extends Cubit<UserStates> {
   ) async {
     emit(UserLoading());
 
-    var response =
-        await UserRepo.getUserData(context: context, token: Utils.token);
+    var response = await UserRepo.getUserData(token: Utils.token);
     if (response != null) {
       emit(UserLoadingSuccess());
       if (kDebugMode) {

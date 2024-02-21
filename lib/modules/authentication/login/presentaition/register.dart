@@ -1,126 +1,225 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:new_bussiness_app/modules/authentication/login/presentaition/reg_confirmation.dart';
+import 'package:new_bussiness_app/modules/authentication/otp/cubit/otp_cubit.dart';
+import 'package:new_bussiness_app/modules/authentication/register/cubit/register_cubit.dart';
 
-// ignore: must_be_immutable
-class Register extends StatefulWidget {
-  Register({super.key, required this.currentIndex});
-  int currentIndex = 1;
+class RegisterWidget extends StatefulWidget {
+  const RegisterWidget({super.key});
+
   @override
-  State<Register> createState() => _RegisterState();
+  State<RegisterWidget> createState() => _RegisterWidgetState();
 }
 
-class _RegisterState extends State<Register> {
-  @override
-  void initState() {
-    widget.currentIndex = _currentIndex;
-    super.initState();
-  }
-
-  final int _currentIndex = 1;
+class _RegisterWidgetState extends State<RegisterWidget> {
   bool isSecure = true;
-  var bottonColor = Colors.deepOrange[400];
-  var textColor = Colors.white;
+  final TextEditingController regnameController = TextEditingController();
+  final TextEditingController regphonController = TextEditingController();
+  final TextEditingController regpassword = TextEditingController();
+  final TextEditingController regconfirmPassword = TextEditingController();
+  final registerFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Expanded(
-        child: ListView(
-          // physics: NeverScrollableScrollPhysics(),
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [Text('رقم الجوال   ')],
+    return BlocProvider(
+      create: (context) => RegisterCubit(),
+      child: Form(
+        key: registerFormKey,
+        child: Expanded(
+          child: ListView(
+            // physics: NeverScrollableScrollPhysics(),
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(2),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [Text('اسم المستخدم   ')],
+                ),
               ),
-            ),
-            Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
-              padding: const EdgeInsets.only(left: 5, right: 5),
-              child: TextFormField(
-                textAlign: TextAlign.end,
-                textAlignVertical: TextAlignVertical.bottom,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.zero,
-                  suffixIcon: const Icon(Icons.phone_in_talk_outlined),
-                  prefix: SizedBox(
-                    width: 100,
-                    child: Row(
+              Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                padding: const EdgeInsets.only(left: 5, right: 5),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "هذا الحقل مطلوب";
+                    }
+
+                    return null;
+                  },
+                  controller: regnameController,
+                  textAlign: TextAlign.end,
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(7),
+                    suffixIcon: const Icon(
+                      Icons.person,
+                      size: 20,
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    hintText: 'اسم المستخدم',
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(3),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [Text('رقم الجوال   ')],
+                ),
+              ),
+              Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                padding: const EdgeInsets.only(left: 5, right: 5),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "هذا الحقل مطلوب";
+                    }
+                    if (!RegExp(r'^\d{8}$').hasMatch(value)) {
+                      return "رقم الهاتف غير صحيح";
+                    }
+                    return null;
+                  },
+                  controller: regphonController,
+                  textAlign: TextAlign.end,
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.zero,
+                    suffixIcon: const Icon(
+                      Icons.phone_in_talk_outlined,
+                      size: 20,
+                    ),
+                    prefixIconConstraints:
+                        BoxConstraints.tight(const Size(72, 30)),
+                    prefixIcon: Row(
                       children: [
-                        SizedBox(
-                            //padding: const EdgeInsets.only(top: 10),
-                            width: 30,
-                            child: CircleAvatar(
-                              child: Image.asset('assets/images/qatar-fl.png'),
-                            )),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 5),
-                          child: Text(
-                            '974+',
-                            style: TextStyle(fontSize: 10),
-                          ),
-                        )
+                        CircleAvatar(
+                          child: Image.asset('assets/images/qatar-fl.png'),
+                        ),
+                        const Text('974+')
                       ],
                     ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    hintText: 'رقم الجوال',
                   ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  hoverColor: bottonColor,
-                  fillColor: bottonColor,
-                  focusColor: bottonColor,
-                  hintText: 'رقم الجوال',
                 ),
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [Text('كلمة المرور   ')],
-              ),
-            ),
-            Container(
-              height: 50,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
-              padding: const EdgeInsets.only(left: 5, right: 5),
-              child: TextFormField(
-                obscureText: isSecure,
-                textAlign: TextAlign.end,
-                textAlignVertical: TextAlignVertical.bottom,
-                decoration: InputDecoration(
-                  suffixIcon: const Icon(Icons.lock_outline),
-                  prefix: IconButton(
-                    icon: obSecureToggle(),
-                    onPressed: () {},
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  hintText: 'كلمة المرور',
+              const Padding(
+                padding: EdgeInsets.all(3),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [Text('كلمة المرور   ')],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Center(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                    height: 100,
-                    width: 250,
-                    color: Colors.deepOrange[400],
-                    child: TextButton(
-                      child: const Text(
-                        'تسجيل الدخول',
-                        style: TextStyle(color: Colors.white),
+              Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                padding: const EdgeInsets.only(left: 5, right: 5),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "هذا الحقل مطلوب";
+                    }
+
+                    return null;
+                  },
+                  controller: regpassword,
+                  obscureText: isSecure,
+                  textAlign: TextAlign.end,
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(7),
+                    suffixIcon: const Icon(
+                      Icons.lock_outline,
+                      size: 20,
+                    ),
+                    prefixIcon: obSecureToggle(),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    hintText: 'كلمة المرور',
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(3),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [Text('تأكيد كلمة المرور   ')],
+                ),
+              ),
+              Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                padding: const EdgeInsets.only(left: 5, right: 5),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "هذا الحقل مطلوب";
+                    }
+
+                    return null;
+                  },
+                  controller: regconfirmPassword,
+                  obscureText: isSecure,
+                  textAlign: TextAlign.end,
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(7),
+                    suffixIcon: const Icon(
+                      Icons.lock_outline,
+                      size: 20,
+                    ),
+                    prefixIcon: obSecureToggle(),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    hintText: 'تأكيد كلمة المرور',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      width: 250,
+                      color: Colors.deepOrange[400],
+                      child: TextButton(
+                        child: const Text(
+                          'انشاء الحساب',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () async {
+                          if (registerFormKey.currentState!.validate()) {
+                            await OTPCubit.get(context).otpSend(body: {
+                              'phone': '+974${regphonController.text}'
+                            });
+                          } else {
+                            return;
+                          }
+
+                          if (context.mounted) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => RegOTPConfirmation(
+                                        phone: regphonController.text,
+                                        confirmPass: regconfirmPassword.text,
+                                        name: regnameController.text,
+                                        password: regpassword.text)));
+                          }
+                        },
                       ),
-                      onPressed: () {},
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

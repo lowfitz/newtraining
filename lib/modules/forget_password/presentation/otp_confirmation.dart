@@ -1,7 +1,5 @@
 // ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
-import 'package:new_bussiness_app/General/end_points.dart';
 import 'package:new_bussiness_app/modules/authentication/otp/cubit/otp_cubit.dart';
 import 'package:new_bussiness_app/modules/forget_password/presentation/reset_password.dart';
 

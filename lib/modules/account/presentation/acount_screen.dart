@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_bussiness_app/modules/login_screens/presentaition/Login_or_register.dart';
+import 'package:new_bussiness_app/modules/authentication/login/presentaition/Login_or_register.dart';
 
 class Account extends StatefulWidget {
   const Account({super.key});
@@ -43,7 +43,7 @@ class _AccountState extends State<Account> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => LogInOrRegister(
-                                      selectPage: 1,
+                                      currentIndex: 1,
                                     )));
                       },
                       //style:  ButtonStyle(backgroundColor: Color(0xFF2F2F75)),
@@ -69,7 +69,7 @@ class _AccountState extends State<Account> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => LogInOrRegister(
-                                      selectPage: 0,
+                                      currentIndex: 0,
                                     )));
                       },
                       //style:  ButtonStyle(backgroundColor: Color(0xFF2F2F75)),

@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:new_bussiness_app/General/end_points.dart';
 import 'package:new_bussiness_app/General/utils.dart';
-import 'package:new_bussiness_app/data/remote/app_dio.dart';
+import 'package:new_bussiness_app/data/remote/dio_service.dart';
 import 'package:new_bussiness_app/modules/home/domain/home_model.dart';
 
 class AddAdsRepo {
@@ -10,7 +10,7 @@ class AddAdsRepo {
     required BuildContext context,
     required Map<String, dynamic>? body,
   }) async {
-    final response = await RemoteDataSource.postData(
+    final response = await DioService.postData(
       body: body,
       loading: true,
       url: EndPoints.addAd,

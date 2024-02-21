@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:new_bussiness_app/modules/authentication/login/presentaition/login.dart';
+import 'package:new_bussiness_app/modules/authentication/login/presentaition/Login_or_register.dart';
 import 'package:new_bussiness_app/modules/forget_password/cubit/cubit.dart';
 
 class ResetPassword extends StatefulWidget {
@@ -144,7 +144,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LogIn(currentIndex: 0)));
+                                builder: (context) => LogInOrRegister(
+                                      currentIndex: 0,
+                                    )));
                       }
                     }
                   },

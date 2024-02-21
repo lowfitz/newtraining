@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:new_bussiness_app/General/end_points.dart';
 import 'package:new_bussiness_app/General/utils.dart';
-import 'package:new_bussiness_app/data/remote/app_dio.dart';
+import 'package:new_bussiness_app/data/remote/dio_service.dart';
 
 class MediaRepo {
   static Future<String?> postMedia(context, {required File media}) async {
-    final response = await RemoteDataSource.postData(
+    final response = await DioService.postData(
         loading: true,
         isForm: true,
         body: {

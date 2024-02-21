@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 
-import 'package:new_bussiness_app/modules/login_screens/cubit/states.dart';
+import 'package:new_bussiness_app/modules/authentication/login/cubit/login_states.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_bussiness_app/modules/login_screens/domain/login_repo.dart';
+import 'package:new_bussiness_app/modules/authentication/login/domain/login_repo.dart';
 import 'package:new_bussiness_app/widgets/reusable_widgets.dart';
 
 class LogInCubit extends Cubit<LogInState> {
@@ -16,7 +16,7 @@ class LogInCubit extends Cubit<LogInState> {
       required Map<String, dynamic> body}) async {
     emit(LogInLoading());
     Myloading().show();
-    var response = await LogInRepo.logInMethode(context: context, body: body);
+    var response = await LogInRepo.logInMethode(body: body);
     if (response != null) {
       Myloading().dimiss();
 

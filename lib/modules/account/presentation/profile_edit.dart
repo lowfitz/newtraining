@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_bussiness_app/General/end_points.dart';
+
 import 'package:new_bussiness_app/General/loading_and_error.dart';
-import 'package:new_bussiness_app/General/utils.dart';
-import 'package:new_bussiness_app/data/remote/dio_service.dart';
+
 import 'package:new_bussiness_app/modules/account/cubit/cubit.dart';
-import 'package:new_bussiness_app/modules/authentication/login/cubit/login_states.dart';
+
 import 'package:new_bussiness_app/modules/authentication/user/cubit/user_cubit.dart';
+import 'package:new_bussiness_app/modules/authentication/user/cubit/user_states.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});

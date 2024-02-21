@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:new_bussiness_app/modules/ads/ads_cubit/ads_cubit.dart';
+import 'package:new_bussiness_app/modules/ads/ads_index/ads_cubit/ads_cubit.dart';
 
-import 'package:new_bussiness_app/modules/edit_ads/cubit/show_states.dart';
-import 'package:new_bussiness_app/modules/edit_ads/domain/edit_repo.dart';
+import 'package:new_bussiness_app/modules/ads/edit_ads/cubit/show_states.dart';
+import 'package:new_bussiness_app/modules/ads/edit_ads/domain/edit_repo.dart';
 
 import 'package:new_bussiness_app/modules/home/domain/home_model.dart';
 import 'package:new_bussiness_app/modules/home/domain/home_repo.dart';

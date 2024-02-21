@@ -1,8 +1,8 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:new_bussiness_app/modules/authentication/login/presentaition/Login_or_register.dart';
 
-import 'package:new_bussiness_app/modules/authentication/login/presentaition/login.dart';
 import 'package:new_bussiness_app/modules/authentication/otp/domain/otp_repo.dart';
 
 import 'package:pinput/pinput.dart';
@@ -96,7 +96,7 @@ class _OTPConfirmationState extends State<RegOTPConfirmation> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => LogIn(
+                              builder: (_) => LogInOrRegister(
                                     currentIndex: 0,
                                   )));
                     }

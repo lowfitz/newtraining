@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:new_bussiness_app/modules/add_ads/presentaion/add_publish.dart';
+import 'package:new_bussiness_app/modules/ads/add_ads/presentaion/add_publish.dart';
 import 'package:new_bussiness_app/modules/home/cubit/cubit.dart';
 import 'package:new_bussiness_app/modules/home/cubit/states.dart';
 import 'package:new_bussiness_app/modules/home/domain/home_model.dart';
@@ -266,8 +266,6 @@ class _AdsState extends State<AddAds> {
                                 },
                                 maxLines: 4,
                                 controller: _projectDetailesController,
-                                // keyboardType: TextInputType.visiblePassword,
-                                // obscureText: isSecure,
                                 textAlign: TextAlign.end,
                                 textAlignVertical: TextAlignVertical.center,
                                 decoration: InputDecoration(

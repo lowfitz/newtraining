@@ -3,10 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_bussiness_app/General/loading_and_error.dart';
 import 'package:new_bussiness_app/General/utils.dart';
 import 'package:new_bussiness_app/modules/account/presentation/profile.dart';
-
-import 'package:new_bussiness_app/modules/login_screens/cubit/states.dart';
-import 'package:new_bussiness_app/modules/login_screens/cubit/user_cubit.dart';
-import 'package:new_bussiness_app/modules/login_screens/presentaition/Login_or_register.dart';
+import 'package:new_bussiness_app/modules/authentication/user/cubit/user_cubit.dart';
+import 'package:new_bussiness_app/modules/authentication/login/presentaition/Login_or_register.dart';
+import 'package:new_bussiness_app/modules/authentication/user/cubit/user_states.dart';
 
 class LoggedInAccountScreen extends StatefulWidget {
   const LoggedInAccountScreen({super.key});
@@ -83,7 +82,7 @@ class _LoggedInAccountScreenState extends State<LoggedInAccountScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => LogInOrRegister(
-                                              selectPage: 0,
+                                              currentIndex: 0,
                                             )));
                                 Utils.removeToken();
                               },
