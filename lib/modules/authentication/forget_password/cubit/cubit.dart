@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_bussiness_app/modules/forget_password/cubit/states.dart';
-import 'package:new_bussiness_app/modules/forget_password/domain/forgerpass_repo.dart';
+import 'package:new_bussiness_app/modules/authentication/forget_password/cubit/states.dart';
+import 'package:new_bussiness_app/modules/authentication/forget_password/domain/forgerpass_repo.dart';
 import 'package:new_bussiness_app/widgets/reusable_widgets.dart';
 
 class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {

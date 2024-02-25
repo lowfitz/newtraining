@@ -11,12 +11,13 @@ class LogInRepo {
       body: body,
     );
 
-    var responsedata = response?.data;
-    await LocalData.insertData(
-        key: 'token', value: responsedata["data"]['token']);
-    Utils.token = LocalData.getCachedData(key: 'token');
     if (response != null) {
       // ignore: avoid_print
+
+      var responsedata = response.data;
+      await LocalData.insertData(
+          key: 'token', value: responsedata["data"]['token']);
+      Utils.token = LocalData.getCachedData(key: 'token');
       print(response.statusCode);
 
       return UserModel.fromJson(response.data);

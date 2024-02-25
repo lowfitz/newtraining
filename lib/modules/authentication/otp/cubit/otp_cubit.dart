@@ -7,7 +7,7 @@ class OTPCubit extends Cubit<OTPStates> {
   OTPCubit() : super(OTPIntial());
 
   static OTPCubit get(context) => BlocProvider.of(context);
-
+  String? verfiycode;
   otpSend({required Map<String, dynamic> body}) async {
     emit(OTPLoading());
     Myloading().show();
@@ -16,10 +16,11 @@ class OTPCubit extends Cubit<OTPStates> {
       Myloading().dimiss();
 
       emit(OTPSendSuccess());
+      response['data']['code'] = verfiycode;
     } else {
       emit(OTPSendFailure());
-      return response;
     }
+    return response;
   }
 
   otpVerify({required Map<String, dynamic> body}) async {
@@ -30,9 +31,11 @@ class OTPCubit extends Cubit<OTPStates> {
       Myloading().dimiss();
 
       emit(OTPVerifySuccess());
+      print(response);
     } else {
       emit(OTPVerifyFailure());
-      return response;
+      print(response);
     }
+    return response;
   }
 }

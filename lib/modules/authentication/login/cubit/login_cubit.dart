@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-
 import 'package:new_bussiness_app/modules/authentication/login/cubit/login_states.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,9 +9,7 @@ class LogInCubit extends Cubit<LogInState> {
 
   static LogInCubit get(context) => BlocProvider.of(context);
 
-  logInMethode(
-      {required BuildContext context,
-      required Map<String, dynamic> body}) async {
+  logInMethode({required Map<String, dynamic> body}) async {
     emit(LogInLoading());
     Myloading().show();
     var response = await LogInRepo.logInMethode(body: body);
@@ -23,6 +19,7 @@ class LogInCubit extends Cubit<LogInState> {
       emit(LogInLoadingSuccess());
     } else {
       emit(LogInLoadingFailure());
+
       return null;
     }
   }

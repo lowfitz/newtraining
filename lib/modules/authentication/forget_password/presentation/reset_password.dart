@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:new_bussiness_app/modules/authentication/login/presentaition/Login_or_register.dart';
-import 'package:new_bussiness_app/modules/forget_password/cubit/cubit.dart';
+import 'package:new_bussiness_app/modules/authentication/forget_password/cubit/cubit.dart';
 
 class ResetPassword extends StatefulWidget {
   ResetPassword({super.key, required this.code, required this.phone});
